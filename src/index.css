@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0F0E0C;
+  --color-paper: #F5F0E8;
+  --color-cream: #EDE6D4;
+  --color-red: #B01A1A;
+  --color-red-lt: #D4332A;
+  --color-amber: #B5651D;
+  --color-teal: #2A6B5A;
+  --color-steel: #2A4A6A;
+  --color-rule: #C8B89A;
+  --color-ghost: #8A7A62;
+  --color-muted: #5A4E3C;
+  --font-sans: 'Crimson Pro', serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  cursor: none;
+  overflow-x: hidden;
+}
+
+a, button, select, input {
+  cursor: none;
+}
+
+.hero-grid-bg {
+  background-image: linear-gradient(rgba(200,184,154,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,184,154,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.hero-scanline {
+  background: linear-gradient(90deg, transparent, rgba(176,26,26,.6), transparent);
+  animation: scan 4s ease-in-out infinite;
+}
+
+@keyframes scan { 0%{top:0} 100%{top:100%} }
+
+.scroll-arrow {
+  width: 16px; height: 20px;
+  border-left: 1px solid var(--color-ghost);
+  border-bottom: 1px solid var(--color-ghost);
+  transform: rotate(-45deg);
+}
+
+.card {
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(200,184,154,.1);
+  padding: 24px; transition: border-color .25s, background .25s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.card:hover { border-color: rgba(200,184,154,.25); background: rgba(255,255,255,.055); transform: translateY(-2px); }
+.light .card { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.08); }
+.light .card:hover { background: rgba(0,0,0,.06); border-color: rgba(0,0,0,.15); }
+.card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent, var(--color-red)); transform: scaleX(0); transform-origin: left;
+  transition: transform .35s ease;
+}
+.card:hover::before { transform: scaleX(1); }
